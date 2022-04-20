@@ -1,0 +1,21 @@
+Logo apos ter iniciado o projeto acessar o link na web para ver o projeto 
+
+http://localhost:8080/
+
+tecnologia
+- materialize
+- Spring mvc
+- Spring security
+- Spring boot
+- Thymeleaf 
+- css
+- html
+- Jpa
+
+login: lucas
+senha: 8408
+
+
+	<td><a th:if="${pessoa.curriculo != null}" th:href="@{/baixarcurriculo/{idpessoa}(idpessoa=${pessoa.id})}">Upload</a>
+		<a th:if="${pessoa.curriculo == null}" style="color: red;">Nao existe</a>
+	<td>

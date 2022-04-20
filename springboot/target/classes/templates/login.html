@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<!-- materialize  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+						
+						<!--caminho do materialize direto -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    
+	
+	<title>Login</title>
+	
+	 <!--cor e estilo dos botoes -->		
+	 <style type="text/css">
+	 form input[type=submit]{  
+	 color: white;
+	}
+	
+	form{
+	margin-left:35%;
+	margin-top:9%; 
+	}
+	
+	.col .row{
+	margin-right: 0rem;
+	}
+	
+	 </style>
+
+</head>
+ 
+<body>
+
+	
+
+	<form th:action="@{/login}" method="post" class="col s12">
+	<h4>Acesso ao sistema</h4>
+	
+		<div class="row">
+			<div class="input-fiel col s6">
+				<label>Login</label> 
+				<input type="text" name="username" style="border-radius: 7px; border-bottom:none;">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="input-fiel col s6">
+				<label>Senha</label> 
+				<input type="password" name="password" style="border-radius: 7px; border-bottom:none;">
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="input-fiel col s6">
+				<input type="submit" name="Logar" value="Acessar" class="waves-effect waves-light btn">
+			</div>
+		</div>
+		
+	</form>
+
+<!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

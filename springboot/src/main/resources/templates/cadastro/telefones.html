@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+	
+	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">	 
+	 
+    <!--caminho do materialize direto -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   
+	 	
+	 <!--cor e estilo da tabela e botoes -->		
+	 <style type="text/css">
+	 table.striped>tbody>tr:nth-child(odd){
+	 background-color: rgba(158,154,154, 0.5); 
+	 }
+	 form input[type=submit]{ 
+	 color: white;}
+	 </style>
+
+<body>
+	
+	
+	<h1>Dados</h1>
+	<a class="waves-effect waves-light btn" href="/cadastropessoa">Principal</a> <!-- butao de voltar para a principal -->
+	<!-- dados dos nomes -->
+	<div th:each="p : ${pessoaobj}">
+
+		<div class="row">
+
+			<p>ID: <span th:text="${p.id}"></span></p>
+			<p>Nome: <span th:text="${p.nome}"></span></p>
+			<p>Sobrenome: <span th:text="${p.Sobrenome}"></span></p>
+			<p>Idade: <span th:text="${p.id}"></span></p>
+		</div>
+	</div>
+	
+
+<h4>Telefones</h4>
+
+	 <!-- formulario para cadastrar o telefone -->		
+	<div class="row">
+
+		<br>
+		<!--aqui mostra as mensagem de erro  -->
+		<div th:each="m : ${msg}">
+			<span th:text="${m}"></span>
+		</div>
+		<br>
+
+		<!-- FORMULARIO DO TELEFONE  -->
+		<form th:action="@{/addfonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method=post class="col s12" 
+		onsubmit="return validarCampos()? true : false"> 
+			<div class="row"> 
+				<div class="input-field col s6">
+					<label class="active" for="numero">Numero</label> 
+					<input id="numero" name="numero" class="validate">
+				</div>
+
+				<div class="input-field col s6">
+					<label class="active" for="tipo">tipo</label> 
+					<input id="tipo" name="tipo" class="validate">
+				</div>
+				
+				<input type="submit" value="Adicionar" class="waves-effect waves-light btn">
+			</div>
+		</form>
+	</div>
+
+
+ <!-- tabela que recebe e lista todos os telefones  -->		
+	<table class="striped">
+	<tr th:each="fone: ${telefones}">
+	<td th:text="${fone.numero}">
+	<td th:text="${fone.tipo}">
+	<td><a th:href="@{/removertelefone/{idtelefone}(idtelefone=${fone.id})}">Excluir</a></td>
+	
+	</tr>
+	</table>
+	
+
+<!--javascript para a validaçao do telefone do lado do cliente sem manda para o servido  -->
+<script type="text/javascript">
+function validarCampos(){
+	numero = document.getElementById('numero').value;
+	tipo = document.getElementById('tipo').value;
+	
+	if (numero === ''){
+		alert("Numero deve ser informado");
+			return false;
+	}
+	else if(tipo === ''){
+		alert ("O Tipo deve ser informado");
+		return false;
+	}
+	
+	alert(numero);
+	return true;
+}
+</script>
+
+ <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
